@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" style="border: 1px solid red;">
+    <!-- Room 1 (Library) -->
+    <rect x="50" y="50" width="100" height="100" fill="lightblue" />
+    <text x="60" y="120" font-size="12" fill="black">Library</text>
+
+    <!-- Room 2 (Library) -->
+    <rect x="200" y="50" width="100" height="100" fill="lightblue" />
+    <text x="210" y="120" font-size="12" fill="black">Library</text>
+
+    <!-- Room 3 (Faculty) -->
+    <rect x="350" y="50" width="100" height="100" fill="lightgreen" />
+    <text x="360" y="120" font-size="12" fill="black">Faculty</text>
+
+    <!-- Room 4 (Faculty) -->
+    <rect x="500" y="50" width="100" height="100" fill="lightgreen" />
+    <text x="510" y="120" font-size="12" fill="black">Faculty</text>
+
+    <!-- Room 5 (Classroom) -->
+    <rect x="50" y="200" width="100" height="100" fill="lightyellow" />
+    <text x="60" y="270" font-size="12" fill="black">Classroom</text>
+
+    <!-- Room 6 (Classroom) -->
+    <rect x="200" y="200" width="100" height="100" fill="lightyellow" />
+    <text x="210" y="270" font-size="12" fill="black">Classroom</text>
+
+    <!-- Room 7 (CR Male) -->
+    <rect x="350" y="200" width="100" height="100" fill="lightgray" />
+    <text x="360" y="270" font-size="12" fill="black">CR (Male)</text>
+
+    <!-- Room 8 (CR Female) -->
+    <rect x="500" y="200" width="100" height="100" fill="lightpink" />
+    <text x="510" y="270" font-size="12" fill="black">CR (Female)</text>
+
+    <!-- Room 9 -->
+    <rect x="650" y="50" width="100" height="100" fill="lightcoral" />
+    <text x="660" y="120" font-size="12" fill="black">Room 9</text>
+
+    <!-- Room 10 -->
+    <rect x="650" y="200" width="100" height="100" fill="lightseagreen" />
+    <text x="660" y="270" font-size="12" fill="black">Room 10</text>
+
+    <circle cx="50" cy="25" r="3" fill="green" />
+    <circle cx="50" cy="175" r="3" fill="green" />
+    <circle cx="80" cy="25" r="3" fill="green" />
+    <circle cx="80" cy="175" r="3" fill="green" />
+    <circle cx="110" cy="25" r="3" fill="green" />
+    <circle cx="110" cy="175" r="3" fill="green" />
+    <circle cx="140" cy="25" r="3" fill="green" />
+    <circle cx="140" cy="175" r="3" fill="green" />
+    
+    <circle cx="25" cy="50" r="3" fill="green" />
+    <circle cx="175" cy="50" r="3" fill="red" />
+    <circle cx="25" cy="80" r="3" fill="red" />
+    <circle cx="175" cy="80" r="3" fill="red" />
+    <circle cx="25" cy="110" r="3" fill="red" />
+    <circle cx="175" cy="110" r="3" fill="red" />
+    <circle cx="25" cy="140" r="3" fill="red" />
+    <circle cx="175" cy="140" r="3" fill="red" />
+    <circle cx="200" cy="25" r="3" fill="red" />
+    <circle cx="200" cy="175" r="3" fill="red" />
+    <circle cx="230" cy="25" r="3" fill="red" />
+    <circle cx="230" cy="175" r="3" fill="red" />
+    <circle cx="260" cy="25" r="3" fill="red" />
+    <circle cx="260" cy="175" r="3" fill="red" />
+    <circle cx="290" cy="25" r="3" fill="red" />
+    <circle cx="290" cy="175" r="3" fill="red" />
+    <circle cx="325" cy="50" r="3" fill="red" />
+    <circle cx="325" cy="80" r="3" fill="red" />
+    <circle cx="325" cy="110" r="3" fill="red" />
+    <circle cx="325" cy="140" r="3" fill="red" />
+    <circle cx="350" cy="25" r="3" fill="red" />
+    <circle cx="350" cy="175" r="3" fill="red" />
+    <circle cx="380" cy="25" r="3" fill="red" />
+    <circle cx="380" cy="175" r="3" fill="red" />
+    <circle cx="410" cy="25" r="3" fill="red" />
+    <circle cx="410" cy="175" r="3" fill="red" />
+    <circle cx="440" cy="25" r="3" fill="red" />
+    <circle cx="440" cy="175" r="3" fill="red" />
+    <circle cx="475" cy="50" r="3" fill="red" />
+    <circle cx="475" cy="80" r="3" fill="red" />
+    <circle cx="475" cy="110" r="3" fill="red" />
+    <circle cx="475" cy="140" r="3" fill="red" />
+    <circle cx="500" cy="25" r="3" fill="red" />
+    <circle cx="500" cy="175" r="3" fill="red" />
+    <circle cx="530" cy="25" r="3" fill="red" />
+    <circle cx="530" cy="175" r="3" fill="red" />
+    <circle cx="560" cy="25" r="3" fill="red" />
+    <circle cx="560" cy="175" r="3" fill="red" />
+    <circle cx="590" cy="25" r="3" fill="red" />
+    <circle cx="590" cy="175" r="3" fill="red" />
+    <circle cx="625" cy="50" r="3" fill="red" />
+    <circle cx="625" cy="80" r="3" fill="red" />
+    <circle cx="625" cy="110" r="3" fill="red" />
+    <circle cx="625" cy="140" r="3" fill="red" />
+    <circle cx="50" cy="325" r="3" fill="red" />
+    <circle cx="80" cy="325" r="3" fill="red" />
+    <circle cx="110" cy="325" r="3" fill="red" />
+    <circle cx="140" cy="325" r="3" fill="red" />
+    <circle cx="25" cy="200" r="3" fill="red" />
+    <circle cx="175" cy="200" r="3" fill="red" />
+    <circle cx="25" cy="230" r="3" fill="red" />
+    <circle cx="175" cy="230" r="3" fill="red" />
+    <circle cx="25" cy="260" r="3" fill="red" />
+    <circle cx="175" cy="260" r="3" fill="red" />
+    <circle cx="25" cy="290" r="3" fill="red" />
+    <circle cx="175" cy="290" r="3" fill="red" />
+    <circle cx="200" cy="325" r="3" fill="red" />
+    <circle cx="230" cy="325" r="3" fill="red" />
+    <circle cx="260" cy="325" r="3" fill="red" />
+    <circle cx="290" cy="325" r="3" fill="red" />
+    <circle cx="325" cy="200" r="3" fill="red" />
+    <circle cx="325" cy="230" r="3" fill="red" />
+    <circle cx="325" cy="260" r="3" fill="red" />
+    <circle cx="325" cy="290" r="3" fill="red" />
+    <circle cx="350" cy="325" r="3" fill="red" />
+    <circle cx="380" cy="325" r="3" fill="red" />
+    <circle cx="410" cy="325" r="3" fill="red" />
+    <circle cx="440" cy="325" r="3" fill="red" />
+    <circle cx="475" cy="200" r="3" fill="red" />
+    <circle cx="475" cy="230" r="3" fill="red" />
+    <circle cx="475" cy="260" r="3" fill="red" />
+    <circle cx="475" cy="290" r="3" fill="red" />
+    <circle cx="500" cy="325" r="3" fill="red" />
+    <circle cx="530" cy="325" r="3" fill="red" />
+    <circle cx="560" cy="325" r="3" fill="red" />
+    <circle cx="590" cy="325" r="3" fill="red" />
+    <circle cx="625" cy="200" r="3" fill="red" />
+    <circle cx="625" cy="230" r="3" fill="red" />
+    <circle cx="625" cy="260" r="3" fill="red" />
+    <circle cx="625" cy="290" r="3" fill="red" />
+    <circle cx="650" cy="25" r="3" fill="red" />
+    <circle cx="650" cy="175" r="3" fill="red" />
+    <circle cx="680" cy="25" r="3" fill="red" />
+    <circle cx="680" cy="175" r="3" fill="red" />
+    <circle cx="710" cy="25" r="3" fill="red" />
+    <circle cx="710" cy="175" r="3" fill="red" />
+    <circle cx="740" cy="25" r="3" fill="red" />
+    <circle cx="740" cy="175" r="3" fill="red" />
+    <circle cx="775" cy="50" r="3" fill="red" />
+    <circle cx="775" cy="80" r="3" fill="red" />
+    <circle cx="775" cy="110" r="3" fill="red" />
+    <circle cx="775" cy="140" r="3" fill="red" />
+    <circle cx="650" cy="325" r="3" fill="red" />
+    <circle cx="680" cy="325" r="3" fill="red" />
+    <circle cx="710" cy="325" r="3" fill="red" />
+    <circle cx="740" cy="325" r="3" fill="red" />
+    <circle cx="775" cy="200" r="3" fill="blue" />
+    <circle cx="775" cy="230" r="3" fill="red" />
+    <circle cx="775" cy="260" r="3" fill="red" />
+    <circle cx="775" cy="290" r="3" fill="red" />
+</svg>

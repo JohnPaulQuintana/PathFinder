@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Floorplan Navigation</title>
+    <script src="https://fastly.jsdelivr.net/npm/jquery"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"
+      integrity="sha512-EmNxF3E6bM0Xg1zvmkeYD3HDBeGxtsG92IxFt1myNZhXdCav9MzvuH/zNMBU1DmIPN6njrhX1VTbqdJxQ2wHDg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <div
+      id="floorplan-container"
+      style="width: 800px; height: 600px; margin: auto"
+    ></div>
+
+    <script>
+      var dom = document.getElementById("floorplan-container");
+      var myChart = echarts.init(dom, null, {
+        renderer: "svg",
+        useDirtyRect: false,
+      });
+      var app = {};
+      var ROOT_PATH = "";
+      var option;
+      var nearestDots;
+      let nearestPoint = null;
+          let minDistance = Infinity;
+          let points = [];
+          let dist;
+      
+      // Automatically detect rooms from the SVG floorplan
+      function parseSVGForCircle(svg) {
+        var circle = [];
+        var circleElem = $(svg).find("circle");
+        console.log(circleElem.length);
+        circleElem.each(function () {
+          var x = parseFloat($(this).attr("cx"));
+          var y = parseFloat($(this).attr("cy"));
+          // var width = parseFloat($(this).attr("width"));
+          // var height = parseFloat($(this).attr("height"));
+
+          if (!isNaN(x) && !isNaN(y)) {
+            console.log("do it");
+            circle.push({ x: x, y: y });
+          }
+        });
+
+        // Create the graph here
+        const graph = {};
+
+        // Define a function to calculate distance between nodes
+        function calculateDistance(node1, node2) {
+          const dx = Math.abs(node1.x - node2.x);
+          const dy = Math.abs(node1.y - node2.y);
+          return Math.sqrt(dx * dx + dy * dy);
+        }
+
+    
+        // Function to find the nearest dots from a given point
+        function findNearestDots(point, dots, destinationPoint) {
+
+          // Initialize the path with the starting point
+          const path = [point];
+          console.log(path)
+
+          // Define a function to calculate the Euclidean distance between two points
+          function distance(point1, point2) {
+            const dx = point1.x - point2.x;
+            const dy = point1.y - point2.y;
+            return Math.sqrt(dx * dx + dy * dy);
+          }
+
+          // Find the nearest point to the destination
+          let currentPoint = point;
+          console.log(currentPoint.x, destinationPoint.x, currentPoint.y, destinationPoint.y)
+          // console.log(dots)
+          // while (currentPoint.x !== destinationPoint.x && currentPoint.y !== destinationPoint.y) {
+          
+          for (let index = 0; index < dots.length; index++) {
+            if(currentPoint.x !== destinationPoint.x && currentPoint.y !== destinationPoint.y){
+              currentPoint = dots[index];
+              console.log('yes', currentPoint, dots[index])
+              points.push(dots[index]);
+              dist = distance(currentPoint, dots[index]);
+              console.log('distance', dist)
+              if (dist < minDistance) {
+                minDistance = dist;
+                nearestPoint = dots[index+1];
+                points.push(dots[index+1]);
+              }
+            }else{
+              console.log('reached')
+              break;
+            }
+            
+          }
+          console.log(points);
+        }
+
+          // Starting and destination points
+          const startPoint = { x: 775, y: 200 };
+          const destinationPoint = { x: 380, y: 325 };
+        // const path = [startingPoint]; // Store the path
+
+        // while (!arePointsEqual(startingPoint, endPoint)) {
+        //   // Find the nearest dot from the current starting point
+        const nearestDot = findNearestDots(startPoint, circle, destinationPoint);
+        console.log(nearestDot)
+
+        // console.log("Path:", path);
+        return { circle };
+      }
+
+      var dots = [];
+      var allDots = [];
+      $.get(ROOT_PATH + "floorplan.svg", function (svg) {
+        echarts.registerMap("floorplan", { svg: svg });
+        // Generate dots for all rooms
+        const { circle } = parseSVGForCircle(svg);
+        
+        option = {
+          title: {
+            text: "This layout is change base on floor plan",
+            left: "center",
+            top: 50,
+          },
+          tooltip: {},
+          geo: {
+            map: "floorplan",
+            roam: true,
+            emphasis: {
+              itemStyle: {
+                color: undefined,
+              },
+              label: {
+                show: false,
+              },
+            },
+          },
+          series: [
+            {
+              name: "Route",
+              type: "lines",
+              coordinateSystem: "geo",
+              geoIndex: 0,
+              emphasis: {
+                label: {
+                  show: false,
+                },
+              },
+              polyline: true,
+              lineStyle: {
+                color: "transparent",
+                width: 5,
+                opacity: 1,
+                type: "dotted",
+              },
+              effect: {
+                show: true,
+                period: 8,
+                color: "#a10000",
+                constantSpeed: 80,
+                trailLength: 0,
+                symbolSize: [20, 12],
+                symbol:
+                  "path://M35.5 40.5c0-22.16 17.84-40 40-40s40 17.84 40 40c0 1.6939-.1042 3.3626-.3067 5H35.8067c-.2025-1.6374-.3067-3.3061-.3067-5zm90.9621-2.6663c-.62-1.4856-.9621-3.1182-.9621-4.8337 0-6.925 5.575-12.5 12.5-12.5s12.5 5.575 12.5 12.5a12.685 12.685 0 0 1-.1529 1.9691l.9537.5506-15.6454 27.0986-.1554-.0897V65.5h-28.7285c-7.318 9.1548-18.587 15-31.2715 15s-23.9535-5.8452-31.2715-15H15.5v-2.8059l-.0937.0437-8.8727-19.0274C2.912 41.5258.5 37.5549.5 33c0-6.925 5.575-12.5 12.5-12.5S25.5 26.075 25.5 33c0 .9035-.0949 1.784-.2753 2.6321L29.8262 45.5h92.2098z",
+              },
+              data: [
+                {
+                  // Use label text as coordinates
+                  coords: [
+                    [775, 200], // Start position
+                    ...points = Object.values(points).map(point => [point.x, point.y]),
+                    // [350, 50], // Intermediate position
+                    // Add more rooms as needed
+                  ],
+                },
+              ],
+            },
+          ],
+        };
+
+        myChart.setOption(option);
+      });
+
+      if (option && typeof option === "object") {
+        myChart.setOption(option);
+      }
+
+      window.addEventListener("resize", myChart.resize);
+    </script>
+  </body>
+</html>
