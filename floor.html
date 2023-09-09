@@ -28,10 +28,11 @@
       var option;
       var nearestDots;
       let nearestPoint = null;
-          let minDistance = Infinity;
-          let points = [];
-          let dist;
-      
+      let minDistance = Infinity;
+      let points = [];
+      let dist;
+      let collectedPoints = [];
+
       // Automatically detect rooms from the SVG floorplan
       function parseSVGForCircle(svg) {
         var circle = [];
@@ -52,66 +53,57 @@
         // Create the graph here
         const graph = {};
 
-        // Define a function to calculate distance between nodes
-        function calculateDistance(node1, node2) {
-          const dx = Math.abs(node1.x - node2.x);
-          const dy = Math.abs(node1.y - node2.y);
+        // Define a function to calculate the Euclidean distance between two points
+        function distance(point1, point2) {
+          const dx = point1.x - point2.x;
+          const dy = point1.y - point2.y;
           return Math.sqrt(dx * dx + dy * dy);
         }
 
-    
         // Function to find the nearest dots from a given point
-        function findNearestDots(point, dots, destinationPoint) {
+        function findNearestDots(point, point2, dots) {
+          const result = [];
+          const visitedDots = new Set(); // To keep track of visited dots
 
-          // Initialize the path with the starting point
-          const path = [point];
-          console.log(path)
+          while (dots.length > 0) {
+            let nearestDot = null;
+            let nearestDistance = Infinity;
 
-          // Define a function to calculate the Euclidean distance between two points
-          function distance(point1, point2) {
-            const dx = point1.x - point2.x;
-            const dy = point1.y - point2.y;
-            return Math.sqrt(dx * dx + dy * dy);
-          }
-
-          // Find the nearest point to the destination
-          let currentPoint = point;
-          console.log(currentPoint.x, destinationPoint.x, currentPoint.y, destinationPoint.y)
-          // console.log(dots)
-          // while (currentPoint.x !== destinationPoint.x && currentPoint.y !== destinationPoint.y) {
-          
-          for (let index = 0; index < dots.length; index++) {
-            if(currentPoint.x !== destinationPoint.x && currentPoint.y !== destinationPoint.y){
-              currentPoint = dots[index];
-              console.log('yes', currentPoint, dots[index])
-              points.push(dots[index]);
-              dist = distance(currentPoint, dots[index]);
-              console.log('distance', dist)
-              if (dist < minDistance) {
-                minDistance = dist;
-                nearestPoint = dots[index+1];
-                points.push(dots[index+1]);
+            for (const dot of dots) {
+              if (!visitedDots.has(dot)) {
+                const d = distance(point, dot);
+                if (d < nearestDistance) {
+                  nearestDot = dot;
+                  nearestDistance = d;
+                }
               }
-            }else{
-              console.log('reached')
-              break;
             }
-            
+
+            if (nearestDot) {
+              result.push([nearestDot.x, nearestDot.y, nearestDistance]);
+              visitedDots.add(nearestDot);
+              point = nearestDot; // Update the current point to the nearest dot
+              // Check if the current point has reached point2
+              if (point.x === point2.x && point.y === point2.y) {
+                break; // Stop the loop when point reaches point2
+              }
+            } else {
+              break; // No more unvisited dots found
+            }
           }
-          console.log(points);
+
+          return result;
         }
 
-          // Starting and destination points
-          const startPoint = { x: 775, y: 200 };
-          const destinationPoint = { x: 380, y: 325 };
-        // const path = [startingPoint]; // Store the path
+        // Example usage:
+        const startingPoint = { x: 750, y: 200 };
+        const destinationPoint = { x: 650, y: 50 };
 
-        // while (!arePointsEqual(startingPoint, endPoint)) {
-        //   // Find the nearest dot from the current starting point
-        const nearestDot = findNearestDots(startPoint, circle, destinationPoint);
-        console.log(nearestDot)
+        const nearestDots = findNearestDots(startingPoint,destinationPoint, circle);
+        // console.log(nearestDots);
+        points = nearestDots.map(dot => dot.slice(0, -1));
+        console.log(points)
 
-        // console.log("Path:", path);
         return { circle };
       }
 
@@ -121,7 +113,7 @@
         echarts.registerMap("floorplan", { svg: svg });
         // Generate dots for all rooms
         const { circle } = parseSVGForCircle(svg);
-        
+
         option = {
           title: {
             text: "This layout is change base on floor plan",
@@ -173,8 +165,8 @@
                 {
                   // Use label text as coordinates
                   coords: [
-                    [775, 200], // Start position
-                    ...points = Object.values(points).map(point => [point.x, point.y]),
+                    // [775, 200], // Start position
+                    ...points,
                     // [350, 50], // Intermediate position
                     // Add more rooms as needed
                   ],

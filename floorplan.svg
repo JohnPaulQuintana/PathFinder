@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" style="border: 1px solid red;">
     <!-- Room 1 (Library) -->
-    <rect x="50" y="50" width="100" height="100" fill="lightblue" />
-    <text x="60" y="120" font-size="12" fill="black">Library</text>
+    <rect x="50" y="50" width="100" height="100" fill="black" />
+    <text x="60" y="120" font-size="12" fill="white">Library</text>
 
     <!-- Room 2 (Library) -->
     <rect x="200" y="50" width="100" height="100" fill="lightblue" />
@@ -36,8 +36,8 @@
     <text x="660" y="120" font-size="12" fill="black">Room 9</text>
 
     <!-- Room 10 -->
-    <rect x="650" y="200" width="100" height="100" fill="lightseagreen" />
-    <text x="660" y="270" font-size="12" fill="black">Room 10</text>
+    <rect x="650" y="200" width="100" height="100" fill="green" />
+    <text x="660" y="270" font-size="12" fill="white">Room 10</text>
 
     <circle cx="50" cy="25" r="3" fill="green" />
     <circle cx="50" cy="175" r="3" fill="green" />
